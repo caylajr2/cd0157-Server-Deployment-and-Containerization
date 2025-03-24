@@ -56,16 +56,17 @@ phases:
       - echo $EKS_KUBECTL_ROLE_ARN
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_KUBECTL_ROLE_ARN
       - aws eks get-token --cluster-name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
-      - aws eks update-kubeconfig --name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
-      - kubectl get nodes
+      # - aws eks update-kubeconfig --name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
+      # - kubectl get nodes
       # - cat ~/.kube/config
       # - aws sts get-caller-identity
       # - kubectl config view
-      - aws sts assume-role --role-arn arn:aws:iam::169451752343:role/UdacityFlaskDeployCBKubectlRole --role-session-name TestSession
+      # - aws sts assume-role --role-arn arn:aws:iam::169451752343:role/UdacityFlaskDeployCBKubectlRole --role-session-name TestSession
       # - aws eks describe-cluster --name simple-jwt-api --region us-east-2
       # - kubectl cluster-info dump
       # - kubectl get nodes
-      - kubectl apply -f simple_jwt_api.yml 
+      # - kubectl apply -f simple_jwt_api.yml
+      - kubectl apply -f simple_jwt_api.yml --validate=false 
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 artifacts:
   files: build.json
