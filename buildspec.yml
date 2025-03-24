@@ -56,7 +56,8 @@ phases:
       - echo $EKS_KUBECTL_ROLE_ARN
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_KUBECTL_ROLE_ARN
       - aws eks get-token --cluster-name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
-      - aws eks update-kubeconfig --name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN kubectl get nodes
+      - aws eks update-kubeconfig --name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
+      - kubectl get nodes
       # - cat ~/.kube/config
       # - aws sts get-caller-identity
       # - kubectl config view
