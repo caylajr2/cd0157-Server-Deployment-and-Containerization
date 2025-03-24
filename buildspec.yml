@@ -32,7 +32,7 @@ phases:
       - export PATH=$PWD/:$PATH  
       - python --version
       - echo 'export PATH=$PWD/:$PATH' >> $HOME/.bashrc
-      - echo `kubectl version --short --client`
+      - echo `kubectl version --client`
       - python -m pip install --upgrade --force pip
       - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
       - curl -sL https://apt.corretto.aws/corretto.key | sudo apt-key add -
@@ -58,6 +58,7 @@ phases:
       - cat ~/.kube/config
       - aws sts get-caller-identity
       # - kubectl config view
+      - aws sts assume-role --role-arn arn:aws:iam::169451752343:role/UdacityFlaskDeployCBKubectlRole --role-session-name TestSession
       - aws eks describe-cluster --name simple-jwt-api --region us-east-2
       - kubectl cluster-info dump
       # - kubectl get nodes
