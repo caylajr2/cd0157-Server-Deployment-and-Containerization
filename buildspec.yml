@@ -57,7 +57,7 @@ phases:
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_KUBECTL_ROLE_ARN
       - aws eks get-token --cluster-name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
       # - aws eks update-kubeconfig --name simple-jwt-api --role-arn $EKS_KUBECTL_ROLE_ARN
-      # - kubectl get nodes
+      - kubectl get nodes
       # - cat ~/.kube/config
       # - aws sts get-caller-identity
       # - kubectl config view
@@ -65,8 +65,8 @@ phases:
       # - aws eks describe-cluster --name simple-jwt-api --region us-east-2
       # - kubectl cluster-info dump
       # - kubectl get nodes
-      # - kubectl apply -f simple_jwt_api.yml
-      - kubectl apply -f simple_jwt_api.yml --validate=false 
+      - kubectl apply -f simple_jwt_api.yml
+      # - kubectl apply -f simple_jwt_api.yml --validate=false 
       - printf '[{"name":"simple_jwt_api","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 artifacts:
   files: build.json
